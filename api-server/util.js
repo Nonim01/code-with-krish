@@ -3,7 +3,7 @@ function getMinoraxNumber(req, res) {
   const num1 = parseInt(req.query.num1);
   const num2 = parseInt(req.query.num2);
 
-  if (isNaN(num1) || isNaN(num2)) {
+  if (isNaN(num1) || isNaN(num2)) {//Uusing only 2 numbers thats why using isNaN(num1) || isNaN(num2
     return res
       .status(400)
       .send({ error: "Both num1 and num2 should be valid numbers" });
@@ -19,13 +19,13 @@ function getAverageNumber(req, res) {
   // Getting the numbers from the query string and turn them into an array of numbers
   const numbers = req.query.numbers.split(",").map(Number);
 
-  if (numbers.some(isNaN)) {
+  if (numbers.some(isNaN)) {//Here, numbers is an array with multiple values, so using numbers.some(isNaN)
     return res
       .status(400)
       .send({ error: "All values should be valid numbers" });
   }
   // Add up all the numbers in to the array
-  const sum = numbers.reduce((acc, num) => acc + num, 0);
+  const sum = numbers.reduce((acc, num) => acc + num, 0);//.reduce() is array method that allows to reduce array to a single value 
   const avg = sum / numbers.length;
   res.status(200).send({ avg });
 
@@ -54,6 +54,7 @@ function getSortedNumbers(req, res) {
   // If 'asc' sort in ascending order S to L
   // If 'dec' sort in descending order L to S
   const sortedNumbers = numbers.sort((a, b) =>
+    // Sort in ascending order if type is asc or otherwise in descending order
     type === "asc" ? a - b : b - a
   );
   res.status(200).send({ sortedNumbers });
