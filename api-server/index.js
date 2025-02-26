@@ -3,6 +3,7 @@ const {
   getMinoraxNumber,
   getAverageNumber,
   getSortedNumbers,
+  getCountOccurrences
 } = require("./util");
 
 const app = new express();
@@ -44,6 +45,14 @@ app.get("/number/sort", (req, res) => {
     return;
   }
   res.send({ sortedNumbers });
+});
+
+app.get("/number/count", (req, res) => {
+  const count = getCountOccurrences(req, res);
+  if (count === null) {
+      return;
+  }
+  res.send({ count });
 });
 
 app.listen(port, () => {

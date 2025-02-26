@@ -69,6 +69,7 @@ function getCountOccurrences(req, res) {
     return res.status(400).send({ error: "Search value must be provided" });
   }
 
+  // Count how many times searchvalue appears in the values array
   const count = values.filter((value) => value === searchValue).length;
   res.status(200).send({ count });
 
