@@ -1,4 +1,5 @@
-function getMinNumber(req, res) {
+//can use this function to get the minimum or maxiuum of two numbers
+function getMinoraxNumber(req, res) {
     const num1 = parseInt(req.query.num1);
     const num2 = parseInt(req.query.num2);
 
@@ -13,4 +14,4 @@ function getMinNumber(req, res) {
     return { num1, num2 };
 }
 
-module.exports = getMinNumber;
+module.exports = { getMinoraxNumber };
