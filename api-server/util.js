@@ -28,4 +28,28 @@ function getAverageNumber(req, res) {
     return numbers;
 }
 
-module.exports = { getMinoraxNumber, getAverageNumber };
+function getSortedNumbers(req, res) {
+    // getting numbers from the query string, split them into an array and convert to numbers
+    const numbers = req.query.numbers.split(',').map(Number);
+    //getting the type
+    const type = req.query.type;
+
+    if (numbers.some(isNaN)) {
+        return res.status(400).send({ error: "All values should be valid numbers" });
+    }
+
+    if (type !== 'asc' && type !== 'dec') {
+        return res.status(400).send({ error: "Type must be either 'asc' or 'dec'" });
+    }
+
+    // sort the numbers based on the 'type' parameter
+    // If 'asc' sort in ascending order S to L
+    // If 'dec' sort in descending order L to S
+    const sortedNumbers = numbers.sort((a, b) => type === 'asc' ? a - b : b - a);
+    res.status(200).send({ sortedNumbers });
+
+    return sortedNumbers;
+}
+
+
+module.exports = { getMinoraxNumber, getAverageNumber, getSortedNumbers, getSortedNumbers };

@@ -1,5 +1,5 @@
 const express = require("express");
-const { getMinoraxNumber,getAverageNumber } = require("./util");
+const { getMinoraxNumber,getAverageNumber,getSortedNumbers } = require("./util");
 
 const app = new express();
 const port = 3000;
@@ -32,6 +32,16 @@ app.get("/number/avg", (req, res) => {
       return;
   }
   res.send({ avg: numbers });
+});
+
+
+//Endpoint for sorting numbers
+app.get("/number/sort", (req, res) => {
+  const sortedNumbers = getSortedNumbers(req, res);
+  if (!sortedNumbers) {
+      return;
+  }
+  res.send({ sortedNumbers });
 });
 
 
