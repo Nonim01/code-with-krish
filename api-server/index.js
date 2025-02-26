@@ -1,5 +1,5 @@
 const express = require("express");
-const { getMinNumber } = require("./util");
+const { getMinoraxNumber,getAverageNumber } = require("./util");
 
 const app = new express();
 const port = 3000;
@@ -23,6 +23,15 @@ app.get("/number/max", (req, res) => {
     }
     const { num1, num2 } = numbers;
     res.send({ max: Math.max(num1, num2) });
+});
+
+//Endpoint for get average of numbers
+app.get("/number/avg", (req, res) => {
+  const numbers = getAverageNumber(req, res);
+  if (!numbers) {
+      return;
+  }
+  res.send({ avg: numbers });
 });
 
 
