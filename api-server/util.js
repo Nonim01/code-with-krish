@@ -32,9 +32,13 @@ function getAverageNumber(req, res) {
   return numbers;
 }
 
+//Timsort is using in here
+// Divides the array into small chunks (runs).
+// Sorts each chunk using insertion sort.
+// Merges sorted chunks using merge sort.
 function getSortedNumbers(req, res) {
   // getting numbers from the query string, split them into an array and convert to numbers
-  const numbers = req.query.numbers.split(",").map(Number);
+  const numbers = req.query.numbers.split(",").map(Number);//mapping for converting string to number, get actual numbers
   //getting the type
   const type = req.query.type;
 
